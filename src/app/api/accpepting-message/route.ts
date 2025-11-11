@@ -24,7 +24,8 @@ export async function POST(req: Request) {
   const userId = new mongoose.Types.ObjectId(user._id);
 
   const { acceptingMessage } = await req.json();
-
+  console.log(acceptingMessage);
+  
   try {
     const updatedUser = await userModel.findByIdAndUpdate(
     userId,
@@ -35,6 +36,8 @@ export async function POST(req: Request) {
       new: true,
     }
   );
+console.log(updatedUser);
+
 
   if (!updatedUser) {
     Response.json(
@@ -51,7 +54,7 @@ export async function POST(req: Request) {
   return Response.json({
     success:true,
     message:"isAccepting message field of user is updated",
-    updatedUser
+    isAcceptingMessage:updatedUser?.isAcceptingMessage
   },{
     status:200
   })

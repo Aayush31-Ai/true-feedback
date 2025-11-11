@@ -7,7 +7,7 @@ const layout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div>
+    <div className='overflow-x-hidden'>
         <Navbar/>
         {children}
     </div>

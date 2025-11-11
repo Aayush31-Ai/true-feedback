@@ -27,6 +27,9 @@ const page = () => {
 
   const { register, setValue, watch } = useForm({
     resolver: zodResolver(acceptingMessageSchema),
+    defaultValues: {
+      isAcceptingMessage: false,
+    },
   });
   const acceptingMessage = watch("isAcceptingMessage");
 
@@ -80,19 +83,24 @@ const page = () => {
     acceptingMessage: boolean
   ) => {
     setIsSwitchingLoading(true);
+    console.log(acceptingMessage);
+    
     try {
       const result = await axios.post("/api/accpepting-message", {
-        isAcceptingMessage: acceptingMessage,
+        acceptingMessage: acceptingMessage,
       });
       if (result.data.message) {
         toast.success(result.data.message);
       }
+      setValue("isAcceptingMessage", result.data.isAcceptingMessage);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast.error(
         axiosError.response?.data.message ||
           "something went wrong while updating isAcceptingMessage"
       );
+    }finally{
+      setIsSwitchingLoading(false);
     }
   };
   if (!session || !session.user) {
@@ -104,10 +112,12 @@ const page = () => {
   const profileUrl = `${baseUrl}/u/${username}`;
   const copyToClipboard = () => {
     navigator.clipboard.writeText(profileUrl);
+    toast.success("link copied to clipboard");
   };
 
   const handleDeleteMessage = (messageId: string) => {
-    setMessages(messages.filter((message) => message._id !== "messageId"));
+    setMessages(messages.filter((message) => message._id !== messageId));
+    toast.success("message deleted");
   };
 
   return (
@@ -142,6 +152,7 @@ const page = () => {
       <div className="mb-8 bg-white shadow-sm rounded-lg p-6 border border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div className="flex items-center">
           <Switch
+          {...register("isAcceptingMessage")}
             checked={acceptingMessage}
             onCheckedChange={handleSwtchButtonForAcceptingMessage}
             disabled={isSwitchingLoading}
@@ -193,7 +204,7 @@ const page = () => {
             />
           ))
         ) : (
-          <div className="col-span-full flex justify-center items-center h-40 bg-white border border-gray-100 rounded-lg text-gray-500">
+          <div className="col-span-full flex justify-center items-center h-36 bg-white border border-gray-100 rounded-lg text-gray-500">
             <p>No messages to display.</p>
           </div>
         )}
