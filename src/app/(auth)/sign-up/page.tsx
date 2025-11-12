@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [isSubmittingForm, setIsSubmittingForm] = React.useState(false);
   const form = useForm<z.infer<typeof signUpSchema>>({
@@ -116,4 +116,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

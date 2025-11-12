@@ -4,7 +4,7 @@ type connectionObject={
     isConnected?:number
 }
 
-let connection:connectionObject={}
+const connection:connectionObject={}
 
 export async function dbConnect() {
     if(connection.isConnected){

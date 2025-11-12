@@ -1,7 +1,6 @@
 "use client";
 import MessageCards from "@/components/appComponents/MessageCards";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { acceptingMessageSchema } from "@/schema/acceptingMessageSchema";
 import { ApiResponse } from "@/types/ApiResponse";

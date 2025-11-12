@@ -21,7 +21,7 @@ import { signInSchema } from "@/schema/signInSchema";
 import { signIn } from "next-auth/react";
 
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [isSubmittingForm, setIsSubmittingForm] = React.useState(false);
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -104,4 +104,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

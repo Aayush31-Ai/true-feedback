@@ -14,7 +14,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ApiResponse } from "@/types/ApiResponse";
 
-const page = () => {
+const Page = () => {
   const [submitOtpLoading, setSubmitOtpLoading] = useState(false);
   const { username } = useParams();
   const [value, setValue] = useState<string>("");
@@ -117,4 +117,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
