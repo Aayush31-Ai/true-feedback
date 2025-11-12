@@ -3,7 +3,7 @@ import { htmlForEmailSending } from "./email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function sendVerificationCode(email: string, code: string) {
+async function sendVerificationCode(email: string, code: string) {
   await resend.emails.send({
     from: "True Feedback <onboarding@resend.dev>",
     to: email,
@@ -11,3 +11,4 @@ export async function sendVerificationCode(email: string, code: string) {
     html: htmlForEmailSending.replace("{code}", code),
   });
 }
+export default sendVerificationCode;
