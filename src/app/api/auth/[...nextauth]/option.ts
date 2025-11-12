@@ -2,7 +2,6 @@ import { NextAuthOptions } from "next-auth";
 import userModel from "@/models/user.model";
 import bcrypt from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
 import { dbConnect } from "@/lib/dbConnection";
 import type { JWT } from "next-auth/jwt";
 import type { User, Session } from "next-auth";

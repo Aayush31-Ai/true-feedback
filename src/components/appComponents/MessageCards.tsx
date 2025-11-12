@@ -19,7 +19,7 @@ type Props = {
 const MessageCard = ({ messages, messageId, onDeleteMessage }: Props) => {
   const handleDeleteMessage = async () => {
     try {
-      const response = await axios.delete(`/api/message-delete/${messageId}`);
+       await axios.delete(`/api/message-delete/${messageId}`);
       onDeleteMessage(messageId);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;

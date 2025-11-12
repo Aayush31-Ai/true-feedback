@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-// @ts-expect-error
+// @ts-expect-error importing global CSS in app directory
 import "./globals.css";
+
 import { Toaster } from "sonner";
 import AuthProvider from "@/context/AuthProvider";
 const geistSans = Geist({

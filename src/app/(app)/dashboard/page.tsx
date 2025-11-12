@@ -19,7 +19,7 @@ interface Message {
   _id: string;
 }
 
-const page = () => {
+const Page = () => {
   const [isLoadingMessages, setIsLoadingMessages] = useState(false);
   const [isSwitchingLoading, setIsSwitchingLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -212,4 +212,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
