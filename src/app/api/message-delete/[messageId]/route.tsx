@@ -4,46 +4,56 @@ import { User } from "next-auth";
 import { getServerSession } from "next-auth/next";
 import mongoose from "mongoose";
 import authOptions from "../../auth/[...nextauth]/option";
+import { NextResponse } from "next/server"; 
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { messageId: string } }
+  context: { params: Record<string, string> }
 ) {
   await dbConnect();
   const session = await getServerSession(authOptions);
-  const user: User = session?.user;
+  const user = session?.user as User | undefined;
 
-  const messageId = params.messageId;
-  if (!session && !session!.user) {
-    return Response.json(
+  // Extract messageId from params
+  const { messageId } = context.params;
+
+  // ✅ Authorization check
+  if (!session || !user) {
+    return NextResponse.json(
       {
         success: false,
-        message: "user is not authorized,please login first",
+        message: "User is not authorized, please login first",
       },
-      {
-        status: 401,
-      }
+      { status: 401 }
     );
   }
-  const userId = new mongoose.Types.ObjectId(user._id);
+
   try {
+    const userId = new mongoose.Types.ObjectId(user._id);
     const updatedMessage = await userModel.updateOne(
-      {
-        _id: userId,
-      },
+      { _id: userId },
       { $pull: { messages: { _id: new mongoose.Types.ObjectId(messageId) } } }
     );
-    if(updatedMessage.modifiedCount==0){
-      return Response.json({success:false,message:"message not found or already deleted"},{status:404})
+
+    if (updatedMessage.modifiedCount === 0) {
+      return NextResponse.json(
+        { success: false, message: "Message not found or already deleted" },
+        { status: 404 }
+      );
     }
-    return Response.json({success:true,message:"message deleted successfully"},{status:200})
+
+    return NextResponse.json(
+      { success: true, message: "Message deleted successfully" },
+      { status: 200 }
+    );
   } catch (error) {
-console.log("There was an error in deleting the username for DB",error);
-Response.json({
-  success:false,
-  message:"There was an error in deleting the username for DB"
-},{
-  status:500
-})
+    console.error("There was an error deleting the message from DB:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        message: "There was an error deleting the message from DB",
+      },
+      { status: 500 }
+    );
   }
 }
