@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "@/lib/dbConnection";
 
 
+
 export async function POST(req: NextRequest): Promise<NextResponse> {
   await dbConnect();
   const { username, email, password } = await req.json();
@@ -26,10 +27,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         },
         { status: 409 }
       );
-    } else {
-      // Case 2: User exists but NOT verified (Resend logic)
-      // Agar user ne pehle register kiya tha lekin verify nahi kiya.
-      // Hum uske password, code aur expiry ko update kar denge.
+    } 
+    else if(existingUserByEmail.username===username){
+      return NextResponse.json(
+  {
+    success: false,
+    message: "User already exists and is verified. Please Login.",
+  },
+  { status: 409 }
+)
+    }
+    else {
       const hashedPassword = await bcrypt.hash(password, 10);
       existingUserByEmail.password = hashedPassword;
       existingUserByEmail.verifycode = verificationCode;
@@ -48,6 +56,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
           { status: 500 }
         );
       }
+
 
       return NextResponse.json(
         {
