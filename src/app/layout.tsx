@@ -34,12 +34,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Aayush Pal" }],
   creator: "Aayush Pal",
   publisher: "Aayush Pal",
-  metadataBase: new URL("https://truefeedback.vercel.app"),
+  metadataBase: new URL("https://true-feedback-hazel-delta.vercel.app/"),
   openGraph: {
     title: "True Feedback | Get Honest Feedback, Anonymously",
     description:
       "Receive 100% honest and anonymous feedback with True Feedback — a safe and modern platform for sharing thoughts.",
-    url: "https://truefeedback.vercel.app",
+    url: "https://true-feedback-hazel-delta.vercel.app/",
     siteName: "True Feedback",
     images: [
       {
