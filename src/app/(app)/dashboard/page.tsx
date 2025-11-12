@@ -48,7 +48,7 @@ const Page = () => {
     } finally {
       setIsSwitchingLoading(false);
     }
-  }, [toast, setValue]);
+  }, [ setValue]);
 
   const fetchMessage = useCallback(
     async (refresh: boolean = false) => {
@@ -70,7 +70,7 @@ const Page = () => {
         setIsLoadingMessages(false);
       }
     },
-    [toast, setMessages, setIsLoadingMessages]
+    [ setMessages, setIsLoadingMessages]
   );
 
   useEffect(() => {
