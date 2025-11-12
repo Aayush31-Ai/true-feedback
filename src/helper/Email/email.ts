@@ -1,93 +1,73 @@
+export const htmlForEmailSending = `
+  <!DOCTYPE html>
+  <html lang="en" style="margin:0;padding:0;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your True Feedback Verification Code</title>
+  </head>
+  <body style="margin:0;padding:0;font-family:'Inter',sans-serif;background-color:#f8f9fb;color:#000;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;margin:auto;">
+      <tr>
+        <td style="padding:40px 20px;text-align:center;">
+          <h1 style="font-size:28px;font-weight:700;margin-bottom:8px;color:#000;">
+            True Feedback
+          </h1>
+          <p style="color:#555;font-size:14px;margin:0;">
+            Honest. Anonymous. Real.
+          </p>
+        </td>
+      </tr>
 
-export const emailTemplate:string = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Verification Required</title>
-    <style type="text/css">
-        body, table, td, a { font-family: Arial, sans-serif; }
-        .code-box {
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            padding: 15px 25px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #333333;
-            display: inline-block;
-            letter-spacing: 5px;
-            border-radius: 5px;
-        }
-        .main-text {
-            color: #555555;
-            line-height: 24px;
-        }
-    </style>
-</head>
-<body style="margin: 0; padding: 0; background-color: #f4f4f4;">
+      <tr>
+        <td style="background-color:#fff;padding:30px 25px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+          <h2 style="text-align:center;font-weight:600;color:#111;margin-top:0;">
+            Verify Your Email
+          </h2>
+          <p style="text-align:center;color:#333;font-size:15px;line-height:1.5;">
+            Hey 👋,<br/>
+            Thank you for joining <strong>True Feedback</strong>!  
+            Use the verification code below to complete your registration:
+          </p>
+          
+          <div style="text-align:center;margin:28px 0;">
+            <span style="
+              display:inline-block;
+              font-size:28px;
+              font-weight:700;
+              color:#111;
+              background-color:#f3f3f3;
+              padding:14px 32px;
+              border-radius:8px;
+              letter-spacing:4px;
+            ">
+              {code}
+            </span>
+          </div>
 
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-            <td align="center" style="padding: 20px 0 30px 0;">
-                <table border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
-                    <tr>
-                        <td align="center" style="padding: 40px 0 30px 0; border-bottom: 3px solid #007bff;">
-                            <h1 style="font-size: 30px; margin: 0; color: #007bff;">TrueFeedack</h1>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                <tr>
-                                    <td class="main-text" style="padding: 0 0 20px 0; font-size: 20px; font-weight: bold; color: #333333;">
-                                        Action Required: Verify Your Email Address
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="main-text" style="padding: 0 0 20px 0; font-size: 16px;">
-                                        Dear User,
-                                        <br><br>
-                                        Thank you for registering with **TrueFeedack**. To complete your account setup and ensure the security of your profile, please use the following verification code:
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center" style="padding: 20px 0 30px 0;">
-                                        <div class="code-box">
-                                            <strong>{{VERIFICATION_CODE}}</strong> 
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="main-text" style="padding: 0 0 30px 0; font-size: 16px;">
-                                        Kindly enter this code on the verification screen to activate your account. Please note that this code is valid for **10 minutes** only.
-                                        <br><br>
-                                        If you did not initiate this request, please disregard this email.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="main-text" style="font-size: 16px;">
-                                        Sincerely,
-                                        <br>
-                                        The **TrueFeedack** Team
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td bgcolor="#f0f0f0" style="padding: 20px 30px 20px 30px; border-radius: 0 0 8px 8px;">
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                <tr>
-                                    <td align="center" style="font-size: 12px; color: #888888;">
-                                        &copy; 2025 TrueFeedack. All rights reserved. | [Website Link]
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
+          <p style="text-align:center;color:#777;font-size:13px;margin-top:30px;line-height:1.5;">
+            This code is valid for the next <strong>10 minutes</strong>.  
+            Please do not share it with anyone for security reasons.
+          </p>
+
+          <hr style="border:none;border-top:1px solid #eee;margin:30px 0;" />
+
+          <p style="text-align:center;font-size:12px;color:#999;">
+            If you didn’t request this, you can safely ignore this email.<br/>
+            — The True Feedback Team 💬
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="text-align:center;padding:25px 10px;">
+          <p style="color:#999;font-size:12px;margin:0;">
+            © ${new Date().getFullYear()} True Feedback. All rights reserved.<br/>
+            Made with ❤️ by Aayush.
+          </p>
+        </td>
+      </tr>
     </table>
-</body>
-</html>`
+  </body>
+  </html>
+  `;
